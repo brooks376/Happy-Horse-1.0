@@ -201,39 +201,407 @@ Based on the announced capabilities, the Happy Horse AI video generator — once
 
 ---
 
-## ❓ FAQ
+## HappyHorse FAQ: Free Use, 1080P, API Access, Commercial Use, Watermarks, and Online Generation
 
-### Is Happy Horse 1.0 open source right now?
-**No.** As of this README, the Happy Horse model weights, inference code, and an official repository have not been published. The release is announced as "coming soon." This repository is a personal information collection while waiting for that release.
+**Last updated: April 27, 2026**
 
-### Is this the official Happy Horse repository?
-**No.** This is a personal collection of public information. I am not affiliated with the Happy Horse team. For anything authoritative, refer to the [official Happy Horse platform](https://happyhorses.io/).
+HappyHorse is an Alibaba-associated AI video generation model designed for creating short videos from text prompts, images, and reference visuals. If you want to try it without setting up API keys or writing code, you can use the [HappyHorse online AI video generator](https://happyhorses.io/) to create videos directly in your browser.
 
-### When will the Happy Horse model weights be available to download?
-No public release date has been announced yet. The Happy Horse 1.0 model weights, the distilled 8-step variant, the super-resolution module, and the inference code are all listed in the announced release scope but have not yet been uploaded. I will sync this README the moment any of them go live, and you can also watch the [official Happy Horse update channel](https://happyhorses.io/) for release news.
-
-### What architecture does the Happy Horse AI video generator use?
-According to community-compiled architecture notes, a 15B-parameter unified self-attention Transformer with 40 layers, sandwich layout (4 modality-specific layers at each end + 32 shared middle layers), per-head sigmoid gating, no dedicated cross-attention branches, no explicit timestep embeddings, and DMD-2 distillation to 8 sampling steps without CFG.
-
-### How fast is Happy Horse 1.0 supposed to be?
-The reported figure is ~38 seconds for a 1080p clip and around 2 seconds for a 5-second 256p preview, both on a single NVIDIA H100. These numbers have not been independently reproduced.
-
-### What languages will Happy Horse 1.0 support for lip-sync?
-The technical description lists 6 languages: English, Mandarin Chinese, Japanese, Korean, German, and French. A separate marketing page lists 7 (adding Cantonese). The official count should be confirmed at release.
-
-### How does Happy Horse 1.0 compare to Wan 2.2 and LTX-2?
-On paper, Happy Horse 1.0 has roughly the same parameter count as the current top open-weights models (Wan 2.2 A14B at 14B, LTX-2 Pro at ~13B), but adds native joint audio-video generation that none of those competitors have. In practice, Wan 2.2 and LTX-2 are downloadable today and Happy Horse is not — so any direct comparison is theoretical until the weights ship.
-
-### Where can I see the Happy Horse AI video generator in the meantime?
-On the [official Happy Horse demo platform](https://happyhorses.io/), and — once it appears in the public tables — on the [Artificial Analysis Text-to-Video Leaderboard](https://artificialanalysis.ai/video/leaderboard/text-to-video).
-
-### What license will the Happy Horse model use?
-Not yet announced. The release is described as fully open source with commercial use permitted, but the exact license has not been published.
-
-### Will this README be updated?
-Yes. I am tracking the official site, the Artificial Analysis arena, and community discussion. As soon as anything official changes — repository goes live, weights are uploaded, a paper is posted, the leaderboard updates with verified Elo numbers — this README will be synced.
+This FAQ answers the most common questions about HappyHorse, including whether it is free, whether it supports 1080P, how the API works, how long video generation takes, whether outputs can be used commercially, and what you should know before using it for ecommerce, ads, social media, or creative projects.
 
 ---
+
+## What is HappyHorse?
+
+HappyHorse is an AI video generation model associated with Alibaba. It supports several video creation workflows, including text-to-video, image-to-video, and reference-to-video.
+
+In practical terms, HappyHorse can help users create short AI-generated videos from a written prompt, animate an existing image, or use reference images to guide the look of a character, product, or visual subject.
+
+The current HappyHorse API family includes three main model types:
+
+| Capability | Model | What it does |
+|---|---|---|
+| Text to video | `happyhorse-1.0-t2v` | Generates a video from a text prompt |
+| Image to video | `happyhorse-1.0-i2v` | Animates a single image into a video |
+| Reference to video | `happyhorse-1.0-r2v` | Generates a video using one or more reference images |
+
+HappyHorse is best suited for short-form AI video generation, especially for social media clips, product visuals, ecommerce content, advertising concepts, character animation, and creative storyboarding.
+
+---
+
+## Is HappyHorse free to use?
+
+HappyHorse may be free or paid depending on where you use it.
+
+If you access HappyHorse through Alibaba Cloud Model Studio, usage depends on Alibaba Cloud’s API access, pricing, quota, and regional availability. Direct API usage usually requires an API key, endpoint configuration, asynchronous task handling, and result retrieval.
+
+If you use a third-party HappyHorse-powered website, free access depends on that platform’s own policy. Some tools may offer free trials, limited daily generations, paid credits, subscription plans, or watermark-free exports.
+
+For users who want to try HappyHorse without configuring the API, [happyhorses.io](https://happyhorses.io/) provides an online way to generate HappyHorse-powered AI videos from prompts or images.
+
+---
+
+## Does HappyHorse support 1080P video generation?
+
+Yes. HappyHorse supports 1080P video generation.
+
+HappyHorse API documentation lists both `720P` and `1080P` as supported resolution options. In many HappyHorse workflows, `1080P` is the default resolution.
+
+However, resolution is only one part of video quality. The final output also depends on the prompt, input image quality, subject complexity, video duration, camera motion, aspect ratio, and generation randomness.
+
+For best results, use a clear prompt, avoid overly crowded scenes, and upload high-quality images when using image-to-video or reference-to-video.
+
+---
+
+## Does HappyHorse have an API?
+
+Yes. HappyHorse has API access through [Alibaba Cloud Model Studio](https://modelstudio.alibabacloud.com/).
+
+The API supports three major video generation workflows:
+
+1. **Text-to-video** — generate a video directly from a written prompt.
+2. **Image-to-video** — animate a single image into a short video.
+3. **Reference-to-video** — use one or more reference images to guide the generated video.
+
+HappyHorse API calls are asynchronous. That means you do not receive the finished video immediately after submitting a request. Instead, the API creates a task, returns a task ID, and then you query the task status until the result is ready.
+
+For developers, this workflow offers flexibility. For non-technical users, an online generator is usually easier because it handles the API setup, task polling, and video retrieval behind the scenes.
+
+---
+
+## How long does HappyHorse take to generate a video?
+
+HappyHorse video generation usually takes about 1 to 5 minutes, depending on the workflow, resolution, duration, server load, and complexity of the request.
+
+A simple 5-second video may complete faster than a longer 1080P video with detailed motion, multiple subjects, or complex reference images.
+
+Generation time can vary based on:
+
+- Video duration
+- Output resolution
+- Prompt complexity
+- Input image quality
+- Number of reference images
+- Platform traffic or server load
+- Whether you are using text-to-video, image-to-video, or reference-to-video
+
+If you are generating videos for a campaign, product launch, or client project, it is best to create multiple variations in advance rather than waiting until the last minute.
+
+---
+
+## How long can HappyHorse videos be?
+
+HappyHorse currently focuses on short video generation.
+
+The supported duration range is typically **3 to 15 seconds**, with 5 seconds commonly used as a default duration. This makes HappyHorse especially useful for short-form visual content rather than long-form video production.
+
+HappyHorse is a good fit for:
+
+- TikTok clips
+- Instagram Reels
+- YouTube Shorts
+- Product motion shots
+- Ecommerce ads
+- App promo clips
+- Brand concept videos
+- Social media visuals
+- AI storyboard previews
+- Short cinematic scenes
+
+If you need a longer video, the best workflow is to generate multiple short clips and edit them together in a video editor.
+
+---
+
+## Which aspect ratios does HappyHorse support?
+
+HappyHorse text-to-video supports common aspect ratios used across social media, ecommerce, advertising, and web design.
+
+Common supported ratios include:
+
+| Aspect ratio | Best for |
+|---|---|
+| `16:9` | YouTube, websites, landing pages, landscape ads |
+| `9:16` | TikTok, Reels, Shorts, vertical mobile ads |
+| `1:1` | Social posts, product previews, square ads |
+| `4:3` | Presentation-style visuals or classic formats |
+| `3:4` | Portrait-style creative assets |
+
+For image-to-video, the output ratio usually follows the uploaded image. If you want a vertical video, start with a vertical image. If you want a landscape video, start with a landscape image.
+
+A simple rule:
+
+- Use **text-to-video** when you want to choose the aspect ratio directly.
+- Use **image-to-video** when you want to animate an existing image and preserve its layout.
+
+---
+
+## Does HappyHorse support Chinese and English prompts?
+
+Yes. HappyHorse supports both Chinese and English prompts.
+
+A good prompt should describe the subject, action, scene, camera movement, lighting, style, and intended mood. The more specific the prompt, the easier it is for the model to generate a useful result.
+
+Example prompt:
+
+> A cinematic close-up of a golden retriever running through a sunlit meadow at sunrise, soft backlight, shallow depth of field, realistic fur movement, smooth slow motion, warm color grading.
+
+For ecommerce or advertising videos, it is usually better to keep the scene simple and describe the product clearly.
+
+Example ecommerce prompt:
+
+> A premium skincare bottle standing on a marble surface, soft studio lighting, gentle camera push-in, water droplets on the bottle, clean luxury beauty advertisement style, realistic reflections.
+
+---
+
+## Can HappyHorse turn an image into a video?
+
+Yes. HappyHorse supports image-to-video generation.
+
+Image-to-video uses an uploaded image as the first frame and creates motion based on that image. You can also add a prompt to describe how the image should move, what the camera should do, or what style the final video should have.
+
+Image-to-video works well for:
+
+- Product photos
+- Portraits
+- Fashion images
+- Character designs
+- Posters
+- Real estate images
+- Food photos
+- Game concept art
+- Ecommerce visuals
+- Social media creative assets
+
+For best results, upload a clear image with a visible subject. Avoid blurry images, low-resolution screenshots, heavy compression, cluttered backgrounds, or images where the main subject is too small.
+
+---
+
+## Can HappyHorse keep a character or product consistent?
+
+Yes. HappyHorse offers a reference-to-video workflow that can help keep a character, product, mascot, or visual subject more consistent across a generated video.
+
+Reference-to-video lets you provide reference images and refer to them in the prompt. This is useful when you want the generated video to preserve a specific person, object, outfit, product design, or brand visual.
+
+This workflow is especially useful for:
+
+- Product advertising
+- Brand mascots
+- Virtual influencers
+- Character videos
+- Fashion lookbooks
+- Game characters
+- Ecommerce product clips
+- Visual identity testing
+
+Example prompt:
+
+> character1 stands in a clean studio environment, the camera slowly pushes in, soft commercial lighting, premium product advertising style, realistic reflections, smooth motion.
+
+For better consistency, use sharp reference images with clear subjects, simple backgrounds, and minimal visual noise.
+
+---
+
+## Does HappyHorse add a watermark?
+
+HappyHorse supports a watermark setting.
+
+Depending on the platform or API configuration, generated videos may include a “HappyHorse” watermark in the lower-right corner. Some platforms may allow watermark-free generation, while others may reserve watermark removal for paid plans or specific export settings.
+
+If you are using generated videos for ads, ecommerce, or client work, always check the final export before publishing.
+
+---
+
+## How long are HappyHorse result links valid?
+
+If you use the HappyHorse API directly, result links may be temporary. API-generated video URLs are typically not meant to be permanent storage links.
+
+For third-party tools, storage policies vary. Some platforms may save your generation history, while others may only provide temporary download links.
+
+Best practice: download and back up your generated video as soon as it is ready, especially if you plan to use it for commercial, marketing, or client-facing work.
+
+---
+
+## Can I use HappyHorse videos commercially?
+
+HappyHorse can be useful for commercial creative workflows, but whether you can use a specific generated video commercially depends on the platform terms, your input assets, and the content of the final output.
+
+HappyHorse-style AI video generation can be useful for:
+
+- Product videos
+- Ecommerce ads
+- Social media campaigns
+- Brand concept videos
+- App promo videos
+- Creative testing
+- Storyboard previews
+- Character or mascot videos
+
+Before using a generated video commercially, check:
+
+- The terms of the platform you used
+- Whether your input images are licensed for commercial use
+- Whether the output includes protected characters, celebrities, trademarks, logos, or copyrighted elements
+- Whether your local laws or advertising platforms require AI-generated content disclosure
+
+A safe rule is to use your own assets, avoid imitating protected IP, and review the platform’s commercial-use policy before publishing.
+
+---
+
+## Is HappyHorse good for ecommerce and advertising?
+
+Yes. HappyHorse is especially useful for ecommerce, advertising, and short-form marketing content.
+
+It can help teams create visual concepts faster, test multiple creative directions, and produce short video assets without organizing a full video shoot.
+
+Common ecommerce and advertising use cases include:
+
+- A product hero shot with subtle camera movement
+- A fashion product in a lifestyle scene
+- A skincare bottle with studio lighting
+- A food product in a cinematic close-up
+- A seasonal campaign visual
+- A social media ad concept
+- A product teaser video
+- A mascot or brand character clip
+
+For commercial campaigns, keep the prompt focused and product-centered. Simple scenes with one clear subject usually produce more usable results than crowded scenes with too many details.
+
+---
+
+## Do I need coding skills to use HappyHorse?
+
+No. You only need coding skills if you want to call the HappyHorse API directly.
+
+Developers can use the API to integrate HappyHorse into apps, websites, creative tools, automation workflows, or internal production systems. Direct API usage usually requires handling API keys, endpoints, asynchronous tasks, task status polling, result downloads, and error handling.
+
+If you simply want to create a video, an online generator is easier. You can enter a prompt, upload an image, choose basic settings, start generation, and download the result.
+
+To try this workflow without coding, visit the [HappyHorse online AI video generator](https://happyhorses.io/).
+
+---
+
+## Is HappyHorse an official open-source model?
+
+Be careful with that wording.
+
+HappyHorse has been publicly associated with Alibaba, and HappyHorse API documentation is available through Alibaba Cloud Model Studio. However, that does not mean every website using the HappyHorse name is official, and it does not necessarily mean the model is open source.
+
+If a website integrates HappyHorse through an API, the safer wording is:
+
+> This tool provides online access to HappyHorse-powered AI video generation.
+
+or:
+
+> This platform integrates HappyHorse video generation so users can create AI videos online.
+
+Avoid claiming to be the “official HappyHorse website” unless the site is actually operated or authorized by Alibaba.
+
+---
+
+## What can I create with HappyHorse?
+
+HappyHorse is best for short, visually rich AI videos.
+
+You can use it to create:
+
+- AI product videos
+- Ecommerce advertising clips
+- Social media content
+- TikTok and Reels videos
+- YouTube Shorts visuals
+- App launch videos
+- Brand concept videos
+- Character animation
+- Game concept trailers
+- Fashion and beauty visuals
+- Food and beverage ads
+- Real estate previews
+- Interior design visuals
+- Storyboard and pitch visuals
+
+Because HappyHorse supports text-to-video, image-to-video, and reference-to-video workflows, it can be useful for both quick idea generation and more controlled creative production.
+
+---
+
+## How do I get better HappyHorse results?
+
+To get better HappyHorse results, use specific prompts, clean images, and simple scenes.
+
+Here are practical tips:
+
+1. **Describe the subject clearly**
+
+   Say exactly who or what should appear in the video.
+
+2. **Add motion**
+
+   Include actions such as walking, floating, rotating, pouring, blooming, zooming, or camera panning.
+
+3. **Define the camera style**
+
+   Use phrases like “close-up,” “wide shot,” “slow dolly in,” “aerial view,” or “cinematic handheld shot.”
+
+4. **Set the lighting and mood**
+
+   Try “soft studio lighting,” “golden hour,” “neon cyberpunk lighting,” or “clean commercial lighting.”
+
+5. **Keep the scene focused**
+
+   One clear subject often works better than a crowded prompt with many competing details.
+
+6. **Use high-quality images**
+
+   For image-to-video and reference-to-video, clean input images usually produce better output.
+
+7. **Generate multiple versions**
+
+   AI video generation is probabilistic. Small changes in prompt, seed, image, or settings can produce different results.
+
+---
+
+## What is the best prompt format for HappyHorse?
+
+A strong HappyHorse prompt usually follows this structure:
+
+> Subject + action + scene + camera movement + lighting + visual style + mood + platform format.
+
+Example:
+
+> A luxury perfume bottle rotating slowly on a reflective black surface, soft studio lighting, close-up product shot, slow camera push-in, cinematic commercial style, elegant and premium mood, 16:9 landscape video.
+
+For vertical social videos, include the intended platform format:
+
+> A stylish sneaker floating above a clean gradient background, slow 360-degree rotation, dramatic studio lighting, sharp product details, modern streetwear ad style, vertical 9:16 format for TikTok and Reels.
+
+This structure helps the model understand what should appear, how it should move, and what visual style you want.
+
+---
+
+## How do I try HappyHorse online?
+
+You can try HappyHorse online by using a generator that supports HappyHorse-powered video creation.
+
+The basic workflow is simple:
+
+1. Enter a text prompt or upload an image.
+2. Choose the generation mode.
+3. Select video settings when available.
+4. Start generation.
+5. Download the finished video.
+
+Whether you want to create a product video, social media clip, advertising concept, animated image, or creative storyboard, HappyHorse gives you a fast way to turn ideas into short AI-generated videos.
+
+---
+
+## Start Creating with HappyHorse
+
+HappyHorse can generate short AI videos from text prompts, images, and reference visuals. It is useful for ecommerce, social media, advertising, product videos, character animation, and creative testing.
+
+If you want to try HappyHorse without setting up API access, use the [HappyHorse online AI video generator](https://happyhorses.io/) to create your first video.
+
+**Primary CTA:** Try the HappyHorse Online Generator  
+**Secondary CTA:** Upload an Image to Create a Video
+
 
 ## 📚 Sources & Updates
 
