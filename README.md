@@ -28,7 +28,6 @@ HappyHorse 1.0 can be experienced through:
 - Alibaba Wukong
 - MuleRun
 - JVS Claw
-- Overseas / international website: `https://happyhorses.io/`
 
 ### Benchmark Performance
 
