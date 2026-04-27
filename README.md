@@ -8,7 +8,69 @@
 >
 > I am not affiliated with the Happy Horse team. **The information below may be incomplete, inconsistent across sources, or change at any time.** I am watching for updates and will sync this README the moment the official model, repository, or technical report is released.
 >
-> 👉 For the most current information, please refer to the [official Happy Horse AI video generator demo and updates](https://happyhorses.io/).
+
+## Latest HappyHorse 1.0 information(2026.4.27)
+
+HappyHorse 1.0, officially translated as **“快乐小马”**, is Alibaba ATH Innovation Unit’s latest video generation and editing model. It started grayscale testing in China on April 27, 2026.
+
+### Official Websites
+
+- China official website: `www.happyhorse.cn`
+- Try HappyHorse now: [happyhorse](happyhorses.io)
+
+### Available Platforms
+
+HappyHorse 1.0 can be experienced through:
+
+- Alibaba Cloud Bailian
+- HappyHorse official website
+- Qwen App
+- Alibaba Wukong
+- MuleRun
+- JVS Claw
+- Overseas / international website: `https://happyhorses.io/`
+
+### Benchmark Performance
+
+On Arena.ai, HappyHorse 1.0 ranked second in:
+
+- Text-to-video
+- Image-to-video
+- Video editing
+
+It ranked behind ByteDance Seedance 2.0.
+
+### Capabilities
+
+- Text-to-video generation
+- Image-to-video generation
+- Video editing
+- 3s–15s video generation
+- Multi-shot generation
+- Coherent short-form storytelling
+- Up to 1080p resolution
+- Up to 4 videos generated at the same time
+
+### Pricing
+
+| Resolution | Listed Price | Discounted Pro Price |
+|---|---:|---:|
+| 720p | RMB 0.9 / second | RMB 0.44 / second |
+| 1080p | RMB 1.6 / second | RMB 0.78 / second |
+
+### Strengths
+
+- Fast generation speed: around 2–5 minutes per video
+- Strong prompt-following ability
+- Good control over camera movement, composition, style, and atmosphere
+- High reference fidelity in image-to-video generation
+- Supports multi-shot and coherent short video storytelling
+
+### Limitations
+
+- Audio-video synchronization still needs improvement in complex scenes
+- Longer videos may contain physical inconsistencies
+- Text rendering may produce garbled or incorrect characters
 
 ---
 
