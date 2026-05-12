@@ -15,7 +15,7 @@ HappyHorse 1.0, officially translated as **“快乐小马”**, is Alibaba ATH 
 
 ### Official Websites
 
-- official website: `[www.happyhorse.com](https://www.happyhorse.com/)`
+- official website: [www.happyhorse.com](https://www.happyhorse.com/)
 - Try HappyHorse now: [happyhorse](happyhorses.io)
 
 ### Available Platforms
